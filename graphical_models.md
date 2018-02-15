@@ -81,10 +81,9 @@ The edges in the graph represent causality: a parent node (perhaps partially) "c
 Not all models are fully generative, however.
 For example, the linear model above is not generative because the covariates $\boldsymbol{x}$ are not random variables, but they are required to produce the observations $\boldsymbol{t}$.
 
-Or this is what it says in the book, at least.
-I'm not really sure why this is an interesting point to make: why can't we simply sample from the random variables and ignore the fixed ones?
+I'm not really sure that I understand this properly: why can't we sample from the random variables and ignore the fixed ones?
 In the linear model example, one can still produce synthetic data sets $\boldsymbol{t}$ under the presumption that the covariates are always the same.
-I guess the author is drawing a distinction between modelling *all of the data* and *some of the data* (or between inferential and predictive modelling, or something).
+Maybe the author is drawing a distinction between modelling *all of the data* and *some of the data* (or between inferential and predictive modelling, or something).
 
 ### Discrete variables
 

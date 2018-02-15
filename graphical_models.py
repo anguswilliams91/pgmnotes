@@ -1,6 +1,8 @@
 #!/usr/bin/env python
 """Produces the graphs for my notes on graphical models."""
 
+import os
+
 import daft
 
 from matplotlib import rc
@@ -224,6 +226,8 @@ def main():
     """Produce the pdfs."""
     rc("font", family="serif", size=12)
     rc("text", usetex=True)
+    if not os.path.exists("figures"):
+        os.makedirs("figures")
     make_figure_8p1()
     make_figure_8p2()
     make_figure_8p5()

@@ -139,3 +139,19 @@ We have now reduced the number of parameters in the model from $2^M$ to $M + 1$.
 ![A graph of $M$ parents and a single child. \label{fig8}](figures/fig_8p13.pdf)
 
 ### Linear-Gaussian models
+
+This example shows how a multivariate Gaussian distribution (mvg) can be expressed as a dag corresponding to a linear-Gaussian model over the component variables.
+Consider a dag over $D$ variables in which node $i$ represents a single continuous random variable $x_i$ having a Gaussian distribution.
+The mean of this distribution is taken to be a linear combination of the states of its parent nodes $\mathrm{pa}_i$ of node $i$
+$$p(x_i | \mathrm{pa}_i) = \mathcal{N}\left(x_i \bigg| \sum\limits_{j\in\mathrm{pa}_i}w_{ij}x_j + b_i, v_i\right)$$
+where $w_{ij}$ and $b_i$ are parameters governing the mean and $v_i$ is the variance of the conditional distribution for $x_i$.
+The log of the joint distribution is the log of the product of the conditionals over all nodes in the graph
+
+\begin{equation}
+\begin{split}
+\log p(\boldsymbol{x}) & = \log p(x_i | \mathrm{pa}_i) \\
+ & = -\sum\limits_{i=1}^D \dfrac{1}{2v_i}\left(x_i - \sum\limits_{j\in\mathrm{pa}_i}w_{ij}x_j - b_i\right)^2 + \mathrm{const}.
+\end{split}
+\end{equation}
+
+Because this function is quadratic in the components $\boldsymbol{x}$, the joint distribution must be a Gaussian.

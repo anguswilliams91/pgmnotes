@@ -154,4 +154,22 @@ The log of the joint distribution is the log of the product of the conditionals 
 \end{split}
 \end{equation}
 
-Because this function is quadratic in the components $\boldsymbol{x}$, the joint distribution must be a Gaussian.
+Because the log of the joint distribution is a quadratic in the components $\boldsymbol{x}$, the joint distribution is a Gaussian.
+The mean and variance of the joint distribution can be calculated recursively.
+We can write the variable at each node as
+\begin{equation}x_i = \sum\limits_{j\in \mathrm{pa}_i} w_{ij}x_j + b_i + \sqrt{v_i} \epsilon_i,\label{eq:lingauss_1}\end{equation}
+where $\epsilon_i$ is a new random variable associated with node $i$ that has zero mean and unit variance.
+Taking the expectation of Equation (\ref{eq:lingauss_1}), we get
+$$\mathbb{E}\left[x_i\right] = \sum\limits_{j\in \mathrm{pa}_i} w_{ij}\mathbb{E}\left[x_j\right] + b_i.$$
+So, by starting with the lowest numbered node (remember the convention that $x_i$ can only have $x_{j<i}$ as parents), we can calculate the mean vector of the joint distribution: $\mathbb{E}[\boldsymbol{x}] = \left(\mathbb{E}[x_1, \dots, x_D]\right)^T$.
+We can obtain the covariance matrix in the same way
+
+\begin{equation}
+\begin{split}
+\mathrm{cov}\left[x_i, x_j\right] &= \mathbb{E}\left[\left(x_i - \mathbb{E}[x_i]\right)\left(x_j - \mathbb{E}[x_j]\right)\right] \\
+&= \mathbb{E}\left[(x_i - \mathbb{E}[x_i])\left\{\sum\limits_{k\in \mathrm{pa}_j}w_{jk}(x_k - \mathbb{E}[x_k]) + \sqrt{v_j}\epsilon_j\right\}\right] \\
+&= \sum\limits_{k\in \mathrm{pa}_j} w_{kj}\mathrm{cov}[x_i, x_k] + I_{ij}v_j.
+\end{split}
+\end{equation}
+
+There are two limiting cases: the case when the graph has no connections, which means that the
